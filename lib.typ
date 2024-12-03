@@ -289,10 +289,10 @@
             font: ("Roboto"),
           )
           #if language == "zh" or language == "ja" [
-            #text(
+            #text(weight: "bold")[#author.lastname]#text(
               accent-color,
               weight: "thin",
-            )[#author.firstname]#text(weight: "bold")[#author.lastname]
+            )[#author.firstname]
           ] else [
             #text(accent-color, weight: "thin")[#author.firstname]
             #text(weight: "bold")[#author.lastname]
@@ -486,7 +486,7 @@
 #let resume-skill-item(category, items) = {
   set block(below: 0.65em)
   set pad(top: 2pt)
-  
+
   pad[
     #grid(
       columns: (20fr, 80fr),
