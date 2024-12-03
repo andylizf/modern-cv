@@ -489,7 +489,7 @@
 
   pad[
     #grid(
-      columns: (20fr, 80fr),
+      columns: (12fr, 88fr),
       gutter: 10pt,
       align(right)[
         #set text(hyphenate: false)
