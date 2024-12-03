@@ -459,6 +459,41 @@
   ]
 }
 
+/// Show publication entry in resume
+/// - title (string): The title of the publication
+/// - authors (string): The authors of the publication
+/// - venue (string): The conference/journal venue
+/// - description (content): Optional description of the publication
+#let resume-publication(
+  title: none,
+  authors: none,
+  venue: none,
+  description: none,
+) = {
+  block(above: 1em, below: 0.65em)[
+    #pad[
+      #justified-header(title, "")
+      
+      #set text(
+        size: 10pt,
+        weight: "light",
+        fill: color-darknight,
+      )
+      #block(above: 0.5em, below: 0.5em)[
+        #authors
+      ]
+
+      #if venue != none [
+        #secondary-justified-header(venue, "")
+      ]
+
+      #if description != none [
+        #resume-item[#description]
+      ]
+    ]
+  ]
+}
+
 /// Show cumulative GPA.
 /// *Example:*
 /// #example(`resume.resume-gpa("3.5", "4.0")`)
