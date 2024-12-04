@@ -515,6 +515,20 @@
   justified-header(certification, date)
 }
 
+/// Show an award entry in the resume.
+/// *Example:*
+/// #example(`resume.resume-award-entry("National Scholarship", "Sep 2024")`)
+/// - title (string): The title of the award
+/// - date (string): The date the award was received
+#let resume-award-entry(
+  title: "",
+  date: "",
+) = {
+  block(above: 0.85em, below: 0.85em)[
+    #resume-certification(title, date)
+  ]
+}
+
 /// Show a list of skills in the resume under a given category.
 /// - category (string): The category of the skills
 /// - items (list): The list of skills. This can be a list of strings but you can also emphasize certain skills by using the `strong` function.
