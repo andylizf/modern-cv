@@ -28,6 +28,23 @@ install: (package "@local")
 # install the library with the "@preview" prefix (for pre-release testing)
 install-preview: (package "@preview")
 
+# install as editable (like pip install -e) for development
+dev:
+  #!/usr/bin/env bash
+  set -eu
+  . ./scripts/setup
+  TARGET="$(resolve-target "@local")"
+  LINK_PATH="${TARGET}/${PKG_PREFIX}/${VERSION}"
+  echo "Creating symbolic link for development..."
+  echo "Source: $PWD"
+  echo "Target: $LINK_PATH"
+  # Remove existing installation
+  rm -rf "$LINK_PATH" 2>/dev/null || true
+  mkdir -p "$(dirname "$LINK_PATH")"
+  # Create symbolic link
+  ln -s "$PWD" "$LINK_PATH"
+  echo "✅ Development mode enabled. Changes will be reflected immediately."
+
 [private]
 remove target:
   ./scripts/uninstall "{{target}}"
