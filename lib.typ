@@ -119,7 +119,7 @@
 /// -> none
 #let github-link(github-path) = {
   set box(height: 11pt)
-  
+
   align(right + horizon)[
     #fa-icon("github", fill: color-darkgray) #link(
       "https://github.com/" + github-path,
@@ -203,7 +203,7 @@
   if type(accent-color) == str {
     accent-color = rgb(accent-color)
   }
-  
+
   let lang_data = toml("lang.toml")
 
   show: body => context {
@@ -221,30 +221,30 @@
     fill: color-darkgray,
     fallback: true,
   )
-  
+
   set page(
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
     footer: if show-footer [#__resume_footer(
-        author,
-        language,
-        lang_data,
-        date,
-      )] else [],
+      author,
+      language,
+      lang_data,
+      date,
+    )] else [],
     footer-descent: 0pt,
   )
-  
+
   // set paragraph spacing
   set par(
     spacing: 0.75em,
     justify: true,
   )
-  
+
   set heading(
     numbering: none,
     outlined: false,
   )
-  
+
   show heading.where(level: 1): it => [
     #set text(
       size: 16pt,
@@ -260,7 +260,7 @@
     #text[#strong[#text(color)[#it.body.text]]]
     #box(width: 1fr, line(length: 100%))
   ]
-  
+
   show heading.where(level: 2): it => {
     set text(
       color-darkgray,
@@ -270,7 +270,7 @@
     )
     it.body
   }
-  
+
   show heading.where(level: 3): it => {
     set text(
       size: 10pt,
@@ -278,7 +278,7 @@
     )
     smallcaps[#it.body]
   }
-  
+
   let name = {
     align(center)[
       #pad(bottom: 5pt)[
@@ -286,22 +286,25 @@
           #set text(
             size: 32pt,
             style: "normal",
-            font: ("Roboto"),
+            weight: "medium",
+            font: "Source Sans 3", // Keep sans-serif for name
+            top-edge: "cap-height",
+            bottom-edge: "baseline",
           )
           #if language == "zh" or language == "ja" [
             #text(weight: "bold")[#author.lastname]#text(
               accent-color,
-              weight: "light",
+              weight: "semibold",
             )[#author.firstname]
           ] else [
-            #text(accent-color, weight: "light")[#author.firstname]
+            #text(accent-color, weight: "semibold")[#author.firstname]
             #text(weight: "bold")[#author.lastname]
           ]
         ]
       ]
     ]
   }
-  
+
   let positions = {
     set text(
       accent-color,
@@ -316,7 +319,7 @@
       ]
     ]
   }
-  
+
   let address = {
     set text(
       size: 9pt,
@@ -328,12 +331,12 @@
       ]
     ]
   }
-  
+
   let contacts = {
     set box(height: 9pt)
-    
+
     let separator = box(width: 5pt)
-    
+
     align(center)[
       #set text(
         size: 9pt,
@@ -364,13 +367,17 @@
           #if ("github" in author) [
             #separator
             #github-icon
-            #box[#underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link("https://github.com/" + author.github)[#author.github]]]
+            #box[#underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link(
+              "https://github.com/" + author.github,
+            )[#author.github]]]
           ]
           #if ("linkedin" in author) [
             #separator
             #linkedin-icon
             #box[
-              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link("https://www.linkedin.com/in/" + author.linkedin)[#author.firstname #author.lastname]]
+              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link(
+                "https://www.linkedin.com/in/" + author.linkedin,
+              )[#author.firstname #author.lastname]]
             ]
           ]
           #if ("twitter" in author) [
@@ -398,7 +405,7 @@
       ]
     ]
   }
-  
+
   name
   positions
   address
@@ -473,7 +480,7 @@
   block(above: 1em, below: 0.65em, breakable: false)[
     #pad[
       #justified-header(title, "")
-      
+
       #set text(
         size: 10pt,
         weight: "light",
@@ -594,10 +601,10 @@
   if type(accent-color) == str {
     accent-color = rgb(accent-color)
   }
-  
+
   // language data
   let lang_data = toml("lang.toml")
-  
+
   if closing == none {
     closing = default-closing(lang_data)
   }
@@ -617,30 +624,30 @@
     fill: color-darkgray,
     fallback: true,
   )
-  
+
   set page(
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
     footer: if show-footer [#__coverletter_footer(
-        author,
-        language,
-        date,
-        lang_data,
-      )] else [],
+      author,
+      language,
+      date,
+      lang_data,
+    )] else [],
     footer-descent: 0pt,
   )
-  
+
   // set paragraph spacing
   set par(
     spacing: 0.75em,
     justify: true,
   )
-  
+
   set heading(
     numbering: none,
     outlined: false,
   )
-  
+
   show heading: it => [
     #set block(
       above: 1em,
@@ -650,37 +657,40 @@
       size: 16pt,
       weight: "regular",
     )
-    
+
     #align(left)[
       #text[#strong[#text(accent-color)[#it.body.text]]]
       #box(width: 1fr, line(length: 100%))
     ]
   ]
-  
+
   let name = {
     align(right)[
       #pad(bottom: 5pt)[
         #block[
           #set text(
-            size: 32pt,
+            size: 28pt,
             style: "normal",
-            font: ("Roboto"),
+            weight: "medium",
+            font: "Source Sans 3", // Keep sans-serif for name
+            top-edge: "cap-height",
+            bottom-edge: "baseline",
           )
           #if language == "zh" or language == "ja" [
             #text(
               accent-color,
-              weight: "thin",
+              weight: "semibold",
             )[#author.firstname]#text(weight: "bold")[#author.lastname]
           ] else [
-            #text(accent-color, weight: "thin")[#author.firstname]
+            #text(accent-color, weight: "semibold")[#author.firstname]
             #text(weight: "bold")[#author.lastname]
           ]
-          
+
         ]
       ]
     ]
   }
-  
+
   let positions = {
     set text(
       accent-color,
@@ -695,7 +705,7 @@
       ]
     ]
   }
-  
+
   let address = {
     set text(
       size: 9pt,
@@ -708,10 +718,10 @@
       ]
     ]
   }
-  
+
   let contacts = {
     set box(height: 9pt)
-    
+
     let separator = [  #box(sym.bar.v)  ]
     let author_list = ()
 
@@ -764,11 +774,11 @@
       #author_list.join(separator)
     ]
   }
-  
+
   let letter-heading = {
     grid(
       columns: (1fr, 2fr),
-      rows: (100pt),
+      rows: 100pt,
       align(left + horizon)[
         #block(
           clip: true,
@@ -787,7 +797,7 @@
       ],
     )
   }
-  
+
   let signature = {
     align(bottom)[
       #pad(bottom: 2em)[
@@ -799,7 +809,7 @@
       ]
     ]
   }
-  
+
   // actual content
   letter-heading
   body
@@ -822,7 +832,7 @@
     ][
       #text(weight: "light", style: "italic", size: 9pt)[#date]
     ]
-    
+
     #pad(top: 0.65em, bottom: 0.65em)[
       #text(weight: "regular", fill: color-gray, size: 9pt)[
         #smallcaps[#entity-info.name] \
@@ -839,7 +849,7 @@
 /// - dear (string): optional field for redefining the "dear" variable
 #let letter-heading(job-position: "", addressee: "", dear: "") = {
   let lang_data = toml("lang.toml")
-  
+
   // TODO: Make this adaptable to content
   underline(evade: false, stroke: 0.5pt, offset: 0.3em)[
     #text(weight: "bold", size: 12pt)[Job Application for #job-position]
