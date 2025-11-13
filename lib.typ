@@ -200,7 +200,7 @@
   font: ("Source Sans Pro", "Source Sans 3"),
   body,
 ) = {
-  if type(accent-color) == "string" {
+  if type(accent-color) == str {
     accent-color = rgb(accent-color)
   }
   
@@ -209,7 +209,7 @@
   show: body => context {
     set document(
       author: author.firstname + " " + author.lastname,
-      title: lflib._linguify("resume", lang: language, from: lang_data).ok,
+      title: "Resume", // lflib._linguify("resume", lang: language, from: lang_data).ok,
     )
     body
   }
@@ -354,7 +354,7 @@
           ]
           #if ("email" in author) [
             #email-icon
-            #box[#link("mailto:" + author.email)[#author.email]]
+            #box[#underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link("mailto:" + author.email)[#author.email]]]
           ]
           #if ("homepage" in author) [
             #separator
@@ -364,13 +364,13 @@
           #if ("github" in author) [
             #separator
             #github-icon
-            #box[#link("https://github.com/" + author.github)[#author.github]]
+            #box[#underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link("https://github.com/" + author.github)[#author.github]]]
           ]
           #if ("linkedin" in author) [
             #separator
             #linkedin-icon
             #box[
-              #link("https://www.linkedin.com/in/" + author.linkedin)[#author.firstname #author.lastname]
+              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link("https://www.linkedin.com/in/" + author.linkedin)[#author.firstname #author.lastname]]
             ]
           ]
           #if ("twitter" in author) [
@@ -444,7 +444,7 @@
   location-color: default-location-color,
 ) = {
   let title-content
-  if type(title-link) == "string" {
+  if type(title-link) == str {
     title-content = link(title-link)[#title]
   } else {
     title-content = title
@@ -470,7 +470,7 @@
   venue: none,
   description: none,
 ) = {
-  block(above: 1em, below: 0.65em)[
+  block(above: 1em, below: 0.65em, breakable: false)[
     #pad[
       #justified-header(title, "")
       
@@ -591,7 +591,7 @@
   closing: none,
   body,
 ) = {
-  if type(accent-color) == "string" {
+  if type(accent-color) == str {
     accent-color = rgb(accent-color)
   }
   
@@ -605,7 +605,7 @@
   show: body => context {
     set document(
       author: author.firstname + " " + author.lastname,
-      title: lflib._linguify("cover-letter", lang: language, from: lang_data).ok,
+      title: "Cover Letter", // lflib._linguify("cover-letter", lang: language, from: lang_data).ok,
     )
     body
   }
