@@ -427,7 +427,7 @@
     above: 0.75em,
     below: 1.25em,
   )
-  set par(leading: 0.65em)
+  set par(leading: 0.7em)
   block(above: 0.5em)[
     #body
   ]
