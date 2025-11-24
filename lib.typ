@@ -357,7 +357,14 @@
           ]
           #if ("email" in author) [
             #email-icon
-            #box[#underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link("mailto:" + author.email)[#author.email]]]
+            #box[
+              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[
+                #link("mailto:" + author.email)[
+                  #set text(fill: accent-color)
+                  #author.email
+                ]
+              ]
+            ]
           ]
           #if ("homepage" in author) [
             #separator
@@ -367,17 +374,25 @@
           #if ("github" in author) [
             #separator
             #github-icon
-            #box[#underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link(
-              "https://github.com/" + author.github,
-            )[#author.github]]]
+            #box[
+              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[
+                #link("https://github.com/" + author.github)[
+                  #set text(fill: accent-color)
+                  #author.github
+                ]
+              ]
+            ]
           ]
           #if ("linkedin" in author) [
             #separator
             #linkedin-icon
             #box[
-              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[#link(
-                "https://www.linkedin.com/in/" + author.linkedin,
-              )[#author.firstname #author.lastname]]
+              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[
+                #link("https://www.linkedin.com/in/" + author.linkedin)[
+                  #set text(fill: accent-color)
+                  #author.firstname #author.lastname
+                ]
+              ]
             ]
           ]
           #if ("twitter" in author) [
