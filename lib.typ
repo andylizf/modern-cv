@@ -414,7 +414,14 @@
           #if ("website" in author) [
             #separator
             #website-icon
-            #box[#link(author.website)[#author.website]]
+            #box[
+              #underline(evade: false, stroke: 0.5pt, offset: 0.2em)[
+                #link(author.website)[
+                  #set text(fill: accent-color)
+                  #author.website.replace("https://", "")
+                ]
+              ]
+            ]
           ]
         ]
       ]
